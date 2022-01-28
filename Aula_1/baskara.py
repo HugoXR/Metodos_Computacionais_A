@@ -9,12 +9,10 @@ except ValueError:
 
 def solucao_eq_segundo_grau(a, b, c):
 	delta = b**2 - 4*a*c
-	
 	if(delta < 0):
 		raise ValueError("Nao ha solucao real")
-	
 	x_1 = (-b+sqrt(delta))/(2*a)
-	x_2 = (-b-sqrt(delta))/(2*a) 
+	x_2 = (-b-sqrt(delta))/(2*a)
 
 	return x_1, x_2
 
@@ -24,4 +22,4 @@ try:
 except ValueError as error:
 	print(error)
 except NameError as nerror:
-	print(nerror)	
+	print(nerror)

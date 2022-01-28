@@ -16,17 +16,17 @@ vx_0, vy_0 = 10, 20
 g = -10
 
 #Calculo do tempo necessario para o projetil voltar ao solo
-t_f = (2*vy_0)/g
+t_f = -(2*vy_0)/g
 delta_t = t_f/20
 
 #Definir a lista t, com valores entre 0 e tf e intervalos delta_t
-t = [time*delta_t for time in range(0,20)]
+t = [time*delta_t for time in range(21)]
 
 #Definir as listas x com a posicao horizontal da particula para cada valor de t
 x = [x_0+vx_0*t_x for t_x in t]
 
 #Definir as listas y com a posicao horizontal da particula para cada valor de t
-y = [y_0+vy_0*t_y-(g*t_y**2)/2 for t_y in t]
+y = [y_0+vy_0*t_y+(g*t_y**2)/2 for t_y in t]
 
 #Faca o grafico da trajetoria da particula, y por x
 plt.plot(x, y, "--o")
