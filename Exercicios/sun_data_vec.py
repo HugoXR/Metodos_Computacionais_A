@@ -82,13 +82,13 @@ Oxford_sun_hours = np.array([[43.8, 60.5, 190.2, 144.7, 240.9, 210.3, 219.7, 176
 [62.4, 124.1, 115.2, 161.2, 173.2, 223.8, 198.5, 141.8, 113.5, 132.2, 67.0, 73.5],
 [69.3, 64.5, 161.4, 168.4, 226.1, 203.3, 212.3, 190.6, 163.7, 109.7, 73.5, 61.5]])
 
-monthly_mean = [((np.array(Oxford_sun_hours[:,i]).sum())/len(Oxford_sun_hours)) for i in range(12)]
+monthly_mean = (np.array(Oxford_sun_hours).mean(axis=0))
 month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 for value, name in zip(monthly_mean, month_names):
     print(f"{name}:\t{value:.1f}")
 
 max_value = max(monthly_mean)
-month_max = month_names[monthly_mean.index(max_value)]
+month_max = month_names[monthly_mean.argmax()]
 
 print(f"{month_max} has best weather with {max_value:.1f} sun hours on average")
 
