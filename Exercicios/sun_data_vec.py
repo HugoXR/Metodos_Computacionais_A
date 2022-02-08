@@ -92,9 +92,9 @@ month_max = month_names[monthly_mean.index(max_value)]
 
 print(f"{month_max} has best weather with {max_value:.1f} sun hours on average")
 
-decade_mean = [((((Oxford_sun_hours[1:,0] + Oxford_sun_hours[:-1, 11])[k-1:k+9]).sum())/600) for k in range(1,Oxford_sun_hours.shape[0],10)]
-
+decade_mean = ((np.array((np.array_split((((Oxford_sun_hours[1:,0] + Oxford_sun_hours[:-1, 11]))), 8)))).sum(axis=1))/600
 for i, value in enumerate(decade_mean):
     print(f"Decade {1930+i*10}-{1939+i*10}: {value:.1f}")
+
 
 
