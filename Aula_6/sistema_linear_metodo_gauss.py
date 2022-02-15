@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 # A = np.array([[2., 1., 1.], [2., 1., 2.], [-3., 2., 1.]])
 # C = np.array([[1.], [2.], [1.]])
@@ -45,8 +46,9 @@ def resolveSL(A, C):
             print("Sistema impossível")
     return B.reshape([N, 1])
 
-
+t0 = time.time()
 B = resolveSL(A, C)
+t1 = time.time()
 erro = np.abs(np.dot(A, B) - C) 
 if(all(erro < 1e-10)):
     print("Solucao é: \nB=\n", B)
@@ -54,3 +56,4 @@ else:
     print("Erro no calculo da matriz B")
 
 print(f"Erro médio: {np.mean(erro)}")
+print(f"Tempo de calculo é: {t1 - t0:4f}")
