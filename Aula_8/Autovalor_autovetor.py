@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-N = 10 
+N = 10
 iN = np.arange(N)
 k_m = 1 # k/m
 
@@ -40,16 +40,16 @@ omega = np.sqrt(autovalores) # Frequencias
 
 fig = plt.figure()
 graf1 = fig.add_subplot(2, 1, 1)
-# Grafico das frequencias (energias=hf) 
+# Grafico das frequencias (energias=hf)
 plt.plot(iN, omega, 'o')
 plt.ylabel('Omega')
 plt.xlabel('Numero do autovalor')
 
-# Gradico dos modos normais
+# Grafico dos modos normais
 graf2 = fig.add_subplot(2, 1, 2)
 for i in iN:
     plt.plot(iN, iN*0+i, '-', color='gray')
-    plt.plot(iN, autovetores[:, i]+i, '-') 
+    plt.plot(iN, autovetores[:, i]+i, '-')
 
 plt.show()
 
