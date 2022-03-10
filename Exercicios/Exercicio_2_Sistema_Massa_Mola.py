@@ -22,21 +22,16 @@ b_n = np.dot(autovetores.T, X_0)
 x_t = []
 x = 0
 t = np.arange(0, 2, 0.1)
+omega = np.sqrt(autovalores).reshape((N, 1))
 
-for t_i in t:
-    for i in range(N):
-        x = x + (b_n[i] * np.cos(np.sqrt(autovalores[i]) * t_i)) * autovetores[:, i]
-    x_t.append(x)
-
-
-x_t = np.array(x_t)
-x_t = (x_t).T
+x_t = np.dot(autovetores, b_n * np.cos(omega * t))
 
 fig = plt.figure()
 grap1 = fig.add_subplot(2, 1, 1)
 for i, value in enumerate(x_t):
     plt.plot(t, value, label=f"{i}")
 plt.legend()
+plt.title("Grafico X(t)")
 
 grap2 = fig.add_subplot(2, 1, 2)
 iN = np.arange(N)
@@ -44,4 +39,5 @@ for i in iN:
     plt.plot(iN, iN*0+i, '-', color='gray')
     plt.plot(iN, autovetores[:, i]+i, '-', label=f"{i}")
 plt.legend()
+plt.title("Grafico Modos Normais")
 plt.show()
