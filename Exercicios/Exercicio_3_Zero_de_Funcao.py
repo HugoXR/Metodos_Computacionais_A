@@ -71,14 +71,14 @@ f_impar = lambda e: alpha(e) + np.tan(alpha(e)*4)*beta(e)
 df_par = lambda e: dalpha_dE(e)*np.tan(alpha(e)*4) + alpha(e)*dalpha_dE(e)*4/(np.cos(alpha(e*4))**2)
 
 # Derivada da funcao impar em relacao a E
-df_impar = lambda e: dalpha_dE(e)+np.tan(4*alpha(e))*dbeta_dE(e) + beta(e)*dalpha_dE(e)*4/(np.cos(alpha(e*4))**2)
+df_impar = lambda e: dalpha_dE(e)+np.tan(4*alpha(e))*dbeta_dE(e) + beta(e)*dalpha_dE(e)*4/(np.cos(alpha(e)*4)**2)
 
 
 erro = 1E-10
 delta_x = 1E10
 
 # Ponto inicial impar
-p_i = i_2
+p_i = i_1
 
 
 # Encontrando zero de funcao mais proximo para funcao impar
