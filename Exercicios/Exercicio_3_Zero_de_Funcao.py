@@ -51,7 +51,7 @@ i_1 = 15.45
 p_2 = 4.19
 i_2 = 7.35
 
-p_3 = 0.48
+p_3 = 0.46
 i_3 = 1.87
 
 
@@ -68,37 +68,47 @@ f_par = lambda e: alpha(e)*np.tan(alpha(e)*4) - beta(e)
 f_impar = lambda e: alpha(e) + np.tan(alpha(e)*4)*beta(e)
 
 # Derivada da funcao par em relacao a E
-df_par = lambda e: dalpha_dE(e)*np.tan(alpha(e)*4) + alpha(e)*dalpha_dE(e)*4/(np.cos(alpha(e*4))**2)
+df_par = lambda e: dalpha_dE(e)*np.tan(alpha(e)*4) + alpha(e)*dalpha_dE(e)*4/(np.cos(alpha(e)*4)**2)
 
 # Derivada da funcao impar em relacao a E
 df_impar = lambda e: dalpha_dE(e)+np.tan(4*alpha(e))*dbeta_dE(e) + beta(e)*dalpha_dE(e)*4/(np.cos(alpha(e)*4)**2)
 
 
 erro = 1E-10
-delta_x = 1E10
 
-# Ponto inicial impar
-p_i = i_1
+# Pontos iniciais impares
+pi_impares = np.array([i_1, i_2, i_3])
 
+# Zeros da funcao impar
+pf_impares = np.zeros_like(pi_impares)
 
-# Encontrando zero de funcao mais proximo para funcao impar
-while abs(delta_x) > erro:
-    delta_x = -f_impar(p_i)/df_impar(p_i)
-    p_i += delta_x
-    print(f"{p_i} \t {f_impar(p_i):.10f} \t {abs(delta_x):.10f}")
-print(f"{p_i} \n\n")
+# Encontrando zeros de funcao mais proximo para funcao impar
+for i, impar in enumerate(pi_impares):
+    delta_x = 1E10
+    p_i = impar
+    while abs(delta_x) > erro:
+        delta_x = -f_impar(p_i)/df_impar(p_i)
+        p_i += delta_x
+        print(f"{p_i} \t {f_impar(p_i):.10f} \t {abs(delta_x):.10f}")
+    print(f"{p_i} \n\n")
+    pf_impares[i] = p_i
 
 erro = 1E-10
-delta_x = 1E10
 
-# Ponto inicial par
-p_p = p_1
+# Pontos iniciais pares
+pi_pares = np.array([p_1, p_2, p_3])
 
-# Encontrando zero de funcao mais proximo para funcao par
-while abs(delta_x) > erro:
-    delta_x = -f_par(p_p)/df_par(p_p)
-    p_p += delta_x
-    print(f"{p_p} \t {f_par(p_p):.10f} \t {abs(delta_x):.10f}")
-print(f"{p_p}")
+# Zeros da funcao par
+pf_pares = np.zeros_like(pi_pares)
 
+# Encontrando zeros de funcao mais proximo para funcao par
+for i, par in enumerate(pi_pares):
+    delta_x = 1E10
+    p_p = par
+    while abs(delta_x) > erro:
+        delta_x = -f_par(p_p)/df_par(p_p)
+        p_p += delta_x
+        print(f"{p_p} \t {f_par(p_p):.10f} \t {abs(delta_x):.10f}")
+    print(f"{p_p} \n\n")
+    pf_pares[i] = p_p
 
